@@ -16,6 +16,12 @@ ruby 3.2.2
 # API KEY
 API KEY 需要自己去OPENAI 注册，app 不提供
 
+# 运行方式
+```shell
+flutter pub get
+flutter run
+```
+
 # 封面
 <div style="display:flex;">
     <img src="https://github.com/hzfanfei/fwechat/assets/46393998/1c05cb1e-478e-4f72-b2ff-be6bbb028288" style="width:25%;" />

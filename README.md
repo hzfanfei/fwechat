@@ -41,3 +41,8 @@ shared_preferences: 完成API KEY的存储
 定制化小人
 
 增加自定义小人
+
+# 其他
+可以长期接远程办公项目，ios，android，flutter均可，微信familymrfan
+
+该项目只供学习交流使用，严禁用于商业用途.....

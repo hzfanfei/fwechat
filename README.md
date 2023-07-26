@@ -21,7 +21,7 @@ API KEY 需要自己去OPENAI 注册，app 不提供
     <img src="https://github.com/hzfanfei/fwechat/assets/46393998/1c05cb1e-478e-4f72-b2ff-be6bbb028288" style="width:25%;" />
     <img src="https://github.com/hzfanfei/fwechat/assets/46393998/def61db3-14cd-4adf-ab5a-cb93375fd9f0" style="width:25%;" />
     <img src="https://github.com/hzfanfei/fwechat/assets/46393998/f7f19152-3964-48c4-ab0b-899c6d546ce3" style="width:25%;" />
-    <img src="https://github.com/hzfanfei/fwechat/assets/46393998/b2b7a533-2405-4e47-9d0c-8aff3b77ffaf" style="width:25%;" />
+    <img src="https://github.com/hzfanfei/fwechat/assets/46393998/10e436f1-bb73-4427-8bd8-e26e79324b38" style="width:25%;" />
     <img src="https://github.com/hzfanfei/fwechat/assets/46393998/5703f7cf-8ecb-41cc-8e59-c9049e4a36de" style="width:25%;" />
     <img src="https://github.com/hzfanfei/fwechat/assets/46393998/77dd52fb-ca1d-43cf-95c3-da4ffe69b5bc" style="width:25%;" />
 </div>

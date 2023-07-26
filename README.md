@@ -28,8 +28,11 @@ API KEY 需要自己去OPENAI 注册，app 不提供
 
 # 技术栈
 Future 异步控制
+
 hive: 完成聊天记录的本地存储
+
 dio: 完成AI聊天服务的请求
+
 shared_preferences: 完成API KEY的存储
 
 # 后期

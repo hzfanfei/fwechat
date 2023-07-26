@@ -1,0 +1,4 @@
+#Thu Jul 27 02:46:49 CST 2023
+base.0=/Users/familyfan/work/fwechat/fwechat/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

@@ -41,12 +41,6 @@ dio: 完成AI聊天服务的请求
 
 shared_preferences: 完成API KEY的存储
 
-# 下期计划
-完成上下文相关
-
-定制化小人
-
-增加自定义小人
 
 # 其他
 可以长期接远程办公项目，ios，android，flutter均可，微信familymrfan

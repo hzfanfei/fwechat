@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fwechat/constant/constant.dart';
 import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:uuid/uuid.dart';
 
 class ChatPage extends StatefulWidget {
 
@@ -42,7 +43,10 @@ class ChatPageState extends State<ChatPage> {
       String messageText = _textEditingController.text;
       if (messageText.isNotEmpty) {
         messages.add(Message(content: messageText, isMe: true, time: currentTime()));
-        _gptRequest();
+        final loadMsg = Message(content: "$chatName正在输入...", isMe: false, time: currentTime());
+        loadMsg.tmpId = const Uuid().v1();
+        messages.add(loadMsg);
+        _gptRequest(loadMsg.tmpId);
         _textEditingController.clear();
         _saveMessage();
       }
@@ -58,7 +62,7 @@ class ChatPageState extends State<ChatPage> {
     return "";
   }
 
-  void _gptRequest() async {
+  void _gptRequest(String tmpId) async {
     String lastQuestion = _lastQuestion();
     if (lastQuestion == "") {
       return;
@@ -93,18 +97,33 @@ class ChatPageState extends State<ChatPage> {
           'Content-Type': 'application/json',
         },
       );
+      List<Map<String, String>> msgs = [];
+      for (int i = 0; i < messages.length; i++) {
+        final msg = messages[i];
+        if (msg.isMe) {
+          msgs.add({ "role":"user", "content":msg.content });
+        } else if (msg.tmpId == "") {
+          msgs.add({ "role":"assistant", "content":msg.content });
+        }
+      }
       Response response = await dio.post('https://api.op-enai.com/v1/chat/completions', data: {
         'model': 'gpt-3.5-turbo-16k',
-        'messages': [{ "role":"user", "content":lastQuestion }],
+        'messages': msgs,
         'temperature': 0,
-        'max_tokens':1024,
+        'max_tokens':300,
         'top_p':1,
         'frequency_penalty':0.0,
         'presence_penalty':0.0
       }, options: options);
       final answer = response.data['choices'][0]['message']['content'];
       setState(() {
-        messages.add(Message(content: answer, isMe: false, time: currentTime()));
+        // replace
+        for (int i = messages.length - 1; i >= 0; i--) {
+          if (messages[i].tmpId == tmpId) {
+            messages[i].content = answer;
+            messages[i].tmpId = "";
+          }
+        }
         _saveMessage();
       });
     } catch (e) {
@@ -116,6 +135,7 @@ class ChatPageState extends State<ChatPage> {
     final box = await Hive.openBox(chatName);
     await box.clear();
     for (int i = 0; i < messages.length; i++) {
+      if (messages[i].tmpId != "") continue;
       await box.add(messages[i]);
     }
     Future.delayed(const Duration(milliseconds: 10), () {
@@ -266,13 +286,16 @@ class ChatPageState extends State<ChatPage> {
 @HiveType(typeId: 0)
 class Message extends HiveObject {
   @HiveField(0)
-  final String content;
+  String content;
   
   @HiveField(1)
   final bool isMe;
 
   @HiveField(2)
   final int time;
+
+  @HiveField(3)
+  String tmpId = "";
 
   Message({required this.content, required this.isMe, required this.time});
 }

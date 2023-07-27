@@ -43,6 +43,6 @@ shared_preferences: 完成API KEY的存储
 
 
 # 其他
-可以长期接远程办公项目，ios，android，flutter均可，微信familymrfan
+长期接远程办公项目，ios，android，flutter均可，微信familymrfan
 
 该项目只供学习交流使用，严禁用于商业用途.....
